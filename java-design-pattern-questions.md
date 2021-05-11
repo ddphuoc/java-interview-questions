@@ -235,13 +235,17 @@ Example:
 ```java
 public class ThreadSafeSingleton {
 
-    private static ThreadSafeSingleton instance;
+    private volatile static ThreadSafeSingleton instance;
     
     private ThreadSafeSingleton(){}
     
-    public static synchronized ThreadSafeSingleton getInstance(){
+    public static ThreadSafeSingleton getInstance() {
         if(instance == null){
-            instance = new ThreadSafeSingleton();
+            synchronized(this) {
+                if(instance == null) {
+                    instance = new ThreadSafeSingleton();
+                }
+            }
         }
         return instance;
     }

@@ -1,0 +1,87 @@
+# Spring and Springboot Interview Questions and Answers
+
+
+## Q. Bean scope in Spring?
+
+**1. Singleton**  
+
+* The container creates a single instance of bean;
+* All requests for that bean name will return the same object, which is cached;
+* Any modifications to the object will be reflected in all references to the bean;
+* This scope is the default value of bean.
+
+```java
+@Bean
+@Scope("singleton") //@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+public Person personSingleton() {
+    return new Person();
+}
+```
+
+**2. Prototype**  
+
+A bean with the prototype scope will return a different instance every time it is requested from the container
+
+```java
+@Bean
+@Scope("prototype")
+public Person personPrototype() {
+    return new Person();
+}
+```
+**3. Request**  
+
+The request scope creates a bean instance for a single HTTP request.
+
+```java
+@Bean
+@RequestScope
+//@Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
+public HelloMessageGenerator requestScopedBean() {
+    return new HelloMessageGenerator();
+}
+```
+The **proxyMode** attribute is Spring creates a proxy to be injected as a dependency, and instantiates the target bean when it is needed in a request
+
+**4. Session**  
+
+The session scope creates a bean instance for an HTTP Session.
+
+```java
+@Bean
+@SessionScope
+//@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+public HelloMessageGenerator sessionScopedBean() {
+    return new HelloMessageGenerator();
+}
+```
+The **proxyMode** attribute is Spring creates a proxy to be injected as a dependency, and instantiates the target bean when it is needed in a request
+
+**5. Application**  
+
+The application scope creates the bean instance for the lifecycle of a ServletContext.
+```java
+@Bean
+@ApplicationScope
+//@Scope(value = WebApplicationContext.SCOPE_APPLICATION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+public HelloMessageGenerator applicationScopedBean() {
+    return new HelloMessageGenerator();
+}
+```
+The **proxyMode** attribute is Spring creates a proxy to be injected as a dependency, and instantiates the target bean when it is needed in a request
+
+**6. Websocket**  
+
+The websocket scope creates it for a particular WebSocket session.
+```java
+@Bean
+@Scope(scopeName = "websocket", proxyMode = ScopedProxyMode.TARGET_CLASS)
+public HelloMessageGenerator websocketScopedBean() {
+    return new HelloMessageGenerator();
+}
+```
+The **proxyMode** attribute is Spring creates a proxy to be injected as a dependency, and instantiates the target bean when it is needed in a request
+
+* When first accessed, WebSocket scoped beans are stored in the WebSocket session attributes.
+* The same instance of the bean is then returned whenever that bean is accessed during the entire WebSocket session.
+* We can also say that it exhibits singleton behavior, but limited to a WebSocket session only
