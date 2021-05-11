@@ -85,3 +85,13 @@ The **proxyMode** attribute is Spring creates a proxy to be injected as a depend
 * When first accessed, WebSocket scoped beans are stored in the WebSocket session attributes.
 * The same instance of the bean is then returned whenever that bean is accessed during the entire WebSocket session.
 * We can also say that it exhibits singleton behavior, but limited to a WebSocket session only
+
+##Q. What is Spring Boot?
+Spring Boot provides a platform to develop a stand-alone and production-grade spring application. You can get started with minimum configurations without the need for an entire Spring configuration setup.
+
+##Q. Advantages of Spring Boot?
+
+* Easy to understand and develop spring applications, avoid complex XML configuration in Spring
+* Increases productivity, develop a Spring applications in an easier way
+* Reduces the development time
+* Offer an easier way of getting started with the application

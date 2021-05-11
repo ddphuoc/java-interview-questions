@@ -959,3 +959,28 @@ now.get();
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
 </div>
+
+##Q. Memory management
+
+**JVM** and **Garbage Collector** has duty of handling memory, developer does not need to explicit allocate memory.
+
+##Q. What Is Garbage Collection and What Are Its Advantages?
+* Looking at heap memory, and deleting the unused objects
+* The biggest advantage of garbage collection is that it removes the burden of manual memory allocation/deallocation
+
+##Q. Are There Any Disadvantages of Garbage Collection?
+* It has an effect on the application's performance, all threads have to be stopped to allow **Garbage Collector** do its work
+
+##Q. What Is Generational Garbage Collection?
+* Heap is divided into a number of sections called generations, each of which will hold objects according to their “age” on the heap
+* Objects are grouped according to their “age” in terms of how many garbage collection cycles they have survived
+
+##Q. How Do You Trigger Garbage Collection from Java Code?
+It will only trigger by JVM automatically when JVM need. Method gc() just send request to JVM but it's not guarantee garbage collection will happen.
+
+##Q. What is Memory Leak? How can we avoid?
+* Memory leak occurs when programmers create a memory in heap and forget to delete it.
+* To avoid memory leaks, memory allocated on heap should always be freed when no longer needed.
+
+##Q. Detecting a Memory Leak
+* Monitor the Heap with Java VisualVM
