@@ -1,4 +1,11 @@
 # Java Design Pattern Questions and Answers
+##Q. What are Design Patterns?
+Solutions to general problems that developers faced in software development
+
+##Q. Types of design pattern?
+* **Creational**: Provide a way to create objects while hiding the creation logic
+* **Structural**: Compose interfaces and define ways to compose objects to obtain functionalities
+* **Behavioral**: Focus on communication between objects
 
 ## Q. Exaplain MVC, Front-Controller, DAO, DTO, Service-Locator, Prototype design patterns?
 
@@ -164,71 +171,9 @@ Java Design Patterns are divided into three categories – creational, structura
 
 ## Q. Explain Singleton Design Pattern in Java?
 
-**1. Eager initialization:**  
-In eager initialization, the instance of Singleton Class is created at the time of class loading.
+Create an object while making sure only single object was created 
 
-Example:
-```java
-public class EagerInitializedSingleton {
-    
-    private static final EagerInitializedSingleton instance = new EagerInitializedSingleton();
-    
-    // private constructor to avoid client applications to use constructor
-    private EagerInitializedSingleton(){}
-
-    public static EagerInitializedSingleton getInstance(){
-        return instance;
-    }
-}
-```
-
-**2. Static block initialization**  
-Static block initialization implementation is similar to eager initialization, except that instance of class is created in the static block that provides option for exception handling.
-
-Example:
-```java
-public class StaticBlockSingleton  {
-
-    private static StaticBlockSingleton  instance;
-    
-    private StaticBlockSingleton (){}
-    
-    // static block initialization for exception handling
-    static{
-        try{
-            instance = new StaticBlockSingleton ();
-        }catch(Exception e){
-            throw new RuntimeException("Exception occured in creating Singleton instance");
-        }
-    }
-    
-    public static StaticBlockSingleton getInstance(){
-        return instance;
-    }
-}
-```
-
-**3. Lazy Initialization**  
-Lazy initialization method to implement Singleton pattern creates the instance in the global access method.
-
-Example:
-```java
-public class LazyInitializedSingleton  {
-
-    private static LazyInitializedSingleton  instance;
-    
-    private LazyInitializedSingleton(){}
-    
-    public static LazyInitializedSingleton  getInstance(){
-        if(instance == null){
-            instance = new LazyInitializedSingleton ();
-        }
-        return instance;
-    }
-}
-```
-
-**4. Thread Safe Singleton**  
+**Eg. Thread Safe Singleton**  
 The easier way to create a thread-safe singleton class is to make the global access method synchronized, so that only one thread can execute this method at a time.
 
 Example:
@@ -252,24 +197,6 @@ public class ThreadSafeSingleton {
 }
 ```
 
-**5. Bill Pugh Singleton Implementation**  
-Prior to Java5, memory model had a lot of issues and above methods caused failure in certain scenarios in multithreaded environment. So, Bill Pugh suggested a concept of inner static classes to use for singleton.
-
-Example:
-```java
-public class BillPughSingleton {
-
-    private BillPughSingleton(){}
-    
-    private static class SingletonHelper{
-        private static final BillPughSingleton INSTANCE = new BillPughSingleton();
-    }
-    
-    public static BillPughSingleton getInstance(){
-        return SingletonHelper.INSTANCE;
-    }
-}
-```
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -277,11 +204,11 @@ public class BillPughSingleton {
 
 ## Q. Explain Adapter Design Pattern in Java?
 
-Adapter design pattern is one of the structural design pattern and its used so that two unrelated interfaces can work together. The object that joins these unrelated interface is called an Adapter.
+This pattern involves a single class to join functions of independent interfaces 
 
-Example:
+**Example**:
 
-we have two incompatible interfaces: **MediaPlayer** and **MediaPackage**. MP3 class is an implementation of the MediaPlayer interface and we have VLC and MP4 as implementations of the MediaPackage interface. We want to use MediaPackage implementations as MediaPlayer instances. So, we need to create an adapter to help to work with two incompatible classes.
+we have two incompatible interfaces: **MediaPlayer** and **MediaPackage**. So, we need to create an adapter to help to work with two incompatible interfaces.
 
 MediaPlayer.java
 ```java
@@ -294,36 +221,6 @@ MediaPackage.java
 ```java
 public interface MediaPackage {
     void playFile(String filename);
-}
-```
-
-MP3.java
-```java
-public class MP3 implements MediaPlayer {
- @Override
- public void play(String filename) {
-    System.out.println("Playing MP3 File " + filename);
- }
-}
-```
-
-MP4.java
-```java
-public class MP4 implements MediaPackage {
-    @Override
-    public void playFile(String filename) {
-        System.out.println("Playing MP4 File " + filename);
-    }
-}
-```
-
-VLC.java
-```java
-public class VLC implements MediaPackage {
-    @Override
-    public void playFile(String filename) {
-        System.out.println("Playing VLC File " + filename);
-    }
 }
 ```
 
@@ -342,27 +239,14 @@ public class FormatAdapter implements MediaPlayer {
 }
 ```
 
-Main.java
-```java
-public class Main {
-    public static void main(String[] args) {
-        MediaPlayer player = new MP3();
-        player.play("file.mp3");
-        player = new FormatAdapter(new MP4());
-        player.play("file.mp4");
-        player = new FormatAdapter(new VLC());
-        player.play("file.avi");
-    }
-}
-```
-
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
 </div>
 
 ## Q. Explain Factory Design Pattern in Java?
 
-A Factory Pattern or Factory Method Pattern says that just define an interface or abstract class for creating an object but let the subclasses decide which class to instantiate. In other words, subclasses are responsible to create the instance of the class.
+A Factory Pattern or Factory Method Pattern just define an interface or abstract class 
+and the subclasses are responsible to create the instance of the class.
 
 Example: Calculate Electricity Bill
 Plan.java
@@ -610,3 +494,5 @@ Output
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
 </div>
+
+##Q. What is Facade pattern?
