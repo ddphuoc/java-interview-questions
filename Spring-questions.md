@@ -95,3 +95,30 @@ Spring Boot provides a platform to develop a stand-alone and production-grade sp
 * Increases productivity, develop a Spring applications in an easier way
 * Reduces the development time
 * Offer an easier way of getting started with the application
+
+##Q. Different between @Controller and @RestController
+
+* @RestController is combine @Controller and @ResponseBody
+* @Controller need @ResponseBody
+
+##Q. Bean lifecycle?
+
+* Container create bean per request
+* Bean destroy when container is closed
+
+##Q. Dependency injection and working?
+
+* We describe how to create objects
+* Inversion of Control (IoC) container will instantiate required classes when needed
+
+###The ways to injects bean
+* Setter injection
+* Constructor injection
+* Field injection
+
+##Q. Inversion of Control and working?
+Wiring dependencies of various objects
+
+##Q. Different ApplicationContext and BeanFactory
+* **BeanFactory** provides and manage bean instance.
+* **ApplicationContext** holding information, metadata and beans in application. It also extends **BeanFactory**

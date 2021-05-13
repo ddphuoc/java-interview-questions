@@ -496,3 +496,20 @@ Output
 </div>
 
 ##Q. What is Facade pattern?
+* Facade encapsulates a complex subsystem behind a simple interface.
+* It decouples a client implementation from the complex subsystem.
+* Instead of calling multiple methods in concrete class, facade encapsulate these methods in one method and share simple methods
+
+**Eg.**
+```java
+class FacadeClass {
+    private Class1 class1 = new Class1();
+    private Class2 class2 = new Class2();
+    private Class3 class3 = new Class3();
+    public void callMethods() { //Encapsulates complex subsystem's methods
+        class1.method();
+        class2.method();
+        class3.method();
+    }
+}
+```
